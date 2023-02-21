@@ -47,33 +47,6 @@ router.post('/forgot-pass', async (req, res) => {
 })
 
 
-// router.post("/change-password", async (req, res) => {
-//     const data = await Otp.find({ email: req.body.email, code: req.body.otpcode })
-//     const response = {}
-//     if (data) {
-//         let currentTime = new Date().getTime();
-//         let differnceTime = data.expireIn - currentTime
-//         if (differnceTime < 0) {
-//             response.message = 'Token expire'
-//             response.statusText = 'error'
-//         } else {
-//             let user = await User.findOne({ email: req.body.email })
-//             user.password = req.body.password 
-//             user.save()
-//             response.message = 'Password Changed Successfully'
-//             response.statusText = 'Success'
-//             //res.status(200).json('ohk')
-//         }
-//     } else {
-//         response.message = 'Invalid otp'
-//         response.statusText = 'error'
-//     }
-//     res.status(200).json(response)
-// })
-
-//
-
-
 const sendEmail = async (name, email, token) => {
     try {
         let transporter = nodemailer.createTransport({
@@ -106,55 +79,6 @@ const sendEmail = async (name, email, token) => {
     }
 }
 
-
-// async..await is not allowed in global scope, must use a wrapper
-
-// const sendmail = async (req, res) => {
-//     const nodemailer = require("nodemailer");
-//     // Generate test SMTP service account from ethereal.email
-//     // Only needed if you don't have a real mail account for testing
-//     let testAccount = await nodemailer.createTestAccount();
-
-//     // create reusable transporter object using the default SMTP transport
-//     // const transporter = nodemailer.createTransport({
-//     //     host: 'smtp.ethereal.email',
-//     //     port: 587,
-//     //     auth: {
-//     //         user: 'toy.little73@ethereal.email',
-//     //         pass: 'qemMwp6w8r8mAPx8rB'
-//     //     }
-//     // });
-
-//     let transporter = nodemailer.createTransport({
-//         service: "gmail",
-//         port: 587,
-//         secure: false, // true for 465, false for other ports
-//         auth: {
-//             user: 'nodeotp@gmail.com', // generated ethereal user
-//             pass: 'anupljlaklpmyoqe', // generated ethereal password
-//         },
-//     });
-
-//     // send mail with defined transport object
-//     let info = await transporter.sendMail({
-//         from: 'nodeotp@gmail.com', // sender address
-//         to: "eserishabh@gmail.com", // list of receivers
-//         subject: "Hello 2", // Subject line
-//         text: "Hello world?", // plain text body
-//         html: "<b>Hello world?</b>", // html body
-//     });
-
-//     console.log("Message sent: %s", info.messageId);
-//     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-//     // Preview only available when sending through an Ethereal account
-//     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-//     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-// }
-
-//main().catch(console.error);
-//
-//
 
 
 
