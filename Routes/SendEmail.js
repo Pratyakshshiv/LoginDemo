@@ -77,9 +77,10 @@ router.post('/forgot-pass', async (req, res) => {
 const sendEmail = async (name, email, token) => {
     try {
         let transporter = nodemailer.createTransport({
+            pool:true,
             service: "gmail",
-            port: 587,
-            secure: false, // true for 465, false for other ports
+            port: 465,
+            secure: true, // true for 465, false for other ports
             auth: {
                 user: 'nodeotp@gmail.com', // generated ethereal user
                 pass: process.env.GPass, // generated ethereal password
